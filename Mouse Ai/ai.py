@@ -51,7 +51,7 @@ while True:
         if fingers[0] == 1 and fingers[1] == 1  :
             length,img,lineInfo=detector.findDistance(4,8,img)
             print(length)
-            if length<35:
+            if length<29:
                 exit()
         
 
