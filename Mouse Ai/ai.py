@@ -46,14 +46,14 @@ while True:
         if fingers[0] == 0 and fingers[4]==0  or fingers[0]==0 and fingers[4]==1 or fingers[0]==1 and fingers[4]==1 or fingers[0]==1 and fingers[4]==1:
             length,img,lineInfo=detector.findDistance(20,4,img)
             print(length)
-            if length<50:
+            if length<30:
                 cv2.circle(img,(lineInfo[4],lineInfo[5]),5,(0,0,255),cv2.FILLED)
                 pyautogui.scroll(-15)
 
         if fingers[0] == 0 and fingers[3]==0  or fingers[0]==0 and fingers[3]==1 or fingers[0]==1 and fingers[3]==1 or fingers[0]==1 and fingers[3]==1:
             length,img,lineInfo=detector.findDistance(16,4,img)
             print(length)
-            if length<50:
+            if length<30:
                 cv2.circle(img,(lineInfo[4],lineInfo[5]),15,(0,0,0),cv2.FILLED)
                 pyautogui.scroll(15)
 
@@ -63,6 +63,10 @@ while True:
             if length<20:
                 cv2.circle(img,(lineInfo[4],lineInfo[5]),15,(0,255,0),cv2.FILLED)
                 autopy.mouse.click()
+
+        if fingers[0]==1 and fingers[1]==0:
+            cv2.circle(img,(1,1),2,(0,0,0),cv2.FILLED)
+            pyautogui.click(button='middle')
 
         if fingers[0] == 1 and fingers[1] == 1 and fingers[2] == 0 and fingers[3] ==0:
             length,img,lineInfo=detector.findDistance(4,8,img)
