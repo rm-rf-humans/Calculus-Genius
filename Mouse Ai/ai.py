@@ -8,7 +8,7 @@ import autopy
 wCam, hCam = 1360,768
 h=640
 frameR = 200 # Frame Reduction
-smoothening = 10
+smoothening = 7
 #########################
 
 cap=cv2.VideoCapture(0)
