@@ -3,11 +3,12 @@ import numpy as np
 import time
 import HandTrackingModule as htm
 import autopy
+import pyautogui
 
 ##########################
 wCam, hCam = 1360,768
 h=640
-frameR = 200 # Frame Reduction
+frameR = 200 
 smoothening = 7
 #########################
 
@@ -34,7 +35,6 @@ while True:
         cv2.rectangle(img,(400,100),(wCam-400,h-frameR),(255,0,255),2)
 
         if fingers[1] == 1 and fingers[2] == 0:
-
             x3=np.interp(x1,(400,wCam-400),(0,wScr))
             y3=np.interp(y1,(100,h-frameR),(0,hScr))
             clocX=plocX+(x3-plocX)/smoothening
@@ -42,16 +42,32 @@ while True:
             autopy.mouse.move(wScr-clocX,clocY)
             plocX,plocY=clocX,clocY
             cv2.circle(img,(x1,y1),15,(255,0,255),cv2.FILLED)
+
+        if fingers[0] == 0 and fingers[4]==0  or fingers[0]==0 and fingers[4]==1 or fingers[0]==1 and fingers[4]==1 or fingers[0]==1 and fingers[4]==1:
+            length,img,lineInfo=detector.findDistance(20,4,img)
+            print(length)
+            if length<50:
+                cv2.circle(img,(lineInfo[4],lineInfo[5]),5,(0,0,255),cv2.FILLED)
+                pyautogui.scroll(-15)
+
+        if fingers[0] == 0 and fingers[3]==0  or fingers[0]==0 and fingers[3]==1 or fingers[0]==1 and fingers[3]==1 or fingers[0]==1 and fingers[3]==1:
+            length,img,lineInfo=detector.findDistance(16,4,img)
+            print(length)
+            if length<50:
+                cv2.circle(img,(lineInfo[4],lineInfo[5]),15,(0,0,0),cv2.FILLED)
+                pyautogui.scroll(15)
+
         if fingers[1] == 1 and fingers[2] == 1:
             length,img,lineInfo=detector.findDistance(8,12,img)
             print(length)
-            if length<40:
+            if length<20:
                 cv2.circle(img,(lineInfo[4],lineInfo[5]),15,(0,255,0),cv2.FILLED)
                 autopy.mouse.click()
-        if fingers[0] == 1 and fingers[1] == 1  :
+
+        if fingers[0] == 1 and fingers[1] == 1 and fingers[2] == 0 and fingers[3] ==0:
             length,img,lineInfo=detector.findDistance(4,8,img)
             print(length)
-            if length<29:
+            if length<15:
                 exit()
         
 
