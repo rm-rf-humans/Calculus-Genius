@@ -1,7 +1,7 @@
 # Mouse Ai
 This project for help you to use your hand instead of touchpad and make your hand like mouse.
 # Requirements
-1. Python version 3.7.6
+1. Python version 3.7.9
 2. Mediapipe
 3. numpy
 4. Opencv
